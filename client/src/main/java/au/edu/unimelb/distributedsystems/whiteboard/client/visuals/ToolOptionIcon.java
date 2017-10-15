@@ -1,11 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package au.edu.unimelb.distributedsystems.whiteboard.client.visuals;
 
-import au.edu.unimelb.distributedsystems.whiteboard.client.app.Client;
+import au.edu.unimelb.distributedsystems.whiteboard.client.app.ClientLoginGUI;
 import au.edu.unimelb.distributedsystems.whiteboard.client.tools.StrokeStyle;
 
 import javax.swing.*;
@@ -23,7 +18,7 @@ public class ToolOptionIcon extends JPanel
     @Override
     public void paintComponent(Graphics g)
     {
-        g.setColor(Client.paint.drawPanel.tool.getColor());
+        g.setColor(ClientLoginGUI.paint.drawPanel.tool.getColor());
         
         if (style == StrokeStyle.DOT_CIRC)
         {
