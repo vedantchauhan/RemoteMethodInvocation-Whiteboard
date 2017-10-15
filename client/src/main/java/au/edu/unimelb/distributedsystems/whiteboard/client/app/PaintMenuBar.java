@@ -1,10 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package au.edu.unimelb.distributedsystems.whiteboard.client.app;
 
 import au.edu.unimelb.distributedsystems.whiteboard.client.tools.FillerElement;
+import au.edu.unimelb.distributedsystems.whiteboard.client.app.ClientLoginGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,12 +19,15 @@ public class PaintMenuBar extends JMenuBar
         JMenuItem openWhiteboard;
         JMenuItem saveWhiteboard; 
         JMenuItem saveAsWhiteboard;
+    JMenu disconnect;
+    JMenu clients;
 
     PaintMenuBar()
     {
-        ItemHandler itemHandler = new ItemHandler();
+        PaintMenuBar.ItemHandler itemHandler = new PaintMenuBar.ItemHandler();
 
         file   = new JMenu("File");
+        clients = new JMenu("Clients");
 
         newWhiteboard = new JMenuItem("New");
         openWhiteboard = new JMenuItem("Open");
@@ -47,6 +48,41 @@ public class PaintMenuBar extends JMenuBar
         file.addSeparator();
         file.add(closeWhiteboard);
         add(file);
+        add(clients);
+    }
+    
+    PaintMenuBar(boolean joint)
+    {
+        PaintMenuBar.ItemHandler itemHandler = new PaintMenuBar.ItemHandler();
+
+        file   = new JMenu("File");
+        disconnect = new JMenu("Disconnect");
+
+        newWhiteboard = new JMenuItem("New");
+        openWhiteboard = new JMenuItem("Open");
+        saveWhiteboard = new JMenuItem("Save");
+        saveAsWhiteboard = new JMenuItem("Save As");
+        closeWhiteboard = new JMenuItem("Close");
+
+        newWhiteboard.addActionListener(itemHandler);
+        openWhiteboard.addActionListener(itemHandler);
+        saveWhiteboard.addActionListener(itemHandler);
+        saveAsWhiteboard.addActionListener(itemHandler);
+        closeWhiteboard.addActionListener(itemHandler);
+
+        file.add(newWhiteboard);
+        file.add(openWhiteboard);
+        file.add(saveWhiteboard);
+        file.add(saveAsWhiteboard);
+        file.addSeparator();
+        file.add(closeWhiteboard);
+        newWhiteboard.setEnabled(false);
+        openWhiteboard.setEnabled(false);
+        saveWhiteboard.setEnabled(false);
+        saveAsWhiteboard.setEnabled(false);
+        closeWhiteboard.setEnabled(false);
+        add(file);
+        add(disconnect);
     }
 
     private class ItemHandler implements ActionListener
@@ -56,35 +92,36 @@ public class PaintMenuBar extends JMenuBar
         {
             if ( event.getSource() == closeWhiteboard)
             {
-                Client.paint.dispose();
+            	ClientLoginGUI.paint.dispose();
                 System.exit(0); 
             }
 
             if ( event.getSource() == newWhiteboard )
             {
-            	Client.paint.drawPanel.elements = new ArrayList();
-            	Client.paint.drawPanel.elements.add(new FillerElement(Color.white));
+            	ClientLoginGUI.paint.drawPanel.elements = new ArrayList();
+            	ClientLoginGUI.paint.drawPanel.elements.add(new FillerElement(Color.white));
             }
 
             if ( event.getSource() == saveWhiteboard )
             {
-            	Client.paint.saveFile();
+            	ClientLoginGUI.paint.saveFile();
             }
             
             if ( event.getSource() == saveAsWhiteboard )
             {
-            	Client.paint.saveAsFile();
+            	ClientLoginGUI.paint.saveAsFile();
             }
 
             if ( event.getSource() == openWhiteboard )
             {
-                File fileName = Client.paint.getFileName();
-                Client.paint.loadFile(fileName);
-                Client.paint.loadElementsFromFile();
-                Client.paint.closeFile();
+                File fileName = ClientLoginGUI.paint.getFileName();
+                ClientLoginGUI.paint.loadFile(fileName);
+                ClientLoginGUI.paint.loadElementsFromFile();
+                ClientLoginGUI.paint.closeFile();
             }
-            Client.paint.repaint();
+            ClientLoginGUI.paint.repaint();
             setFocusable(false);
         }
     }
+
 }

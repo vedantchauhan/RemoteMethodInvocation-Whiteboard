@@ -1,9 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package au.edu.unimelb.distributedsystems.whiteboard.client.app;
 
+package au.edu.unimelb.distributedsystems.whiteboard.client.app;
 
 import au.edu.unimelb.distributedsystems.whiteboard.client.controls.*;
 import au.edu.unimelb.distributedsystems.whiteboard.client.tools.*;
@@ -232,13 +228,13 @@ public class DrawPanel extends JPanel implements Runnable, KeyListener
                 try
                 {
                     robot = new Robot();
-                    Client.paint.paintTools.toolOptionPanel.setColor( robot.getPixelColor(pointer.getLocation().x, pointer.getLocation().y) );
+                    ClientLoginGUI.paint.paintTools.toolOptionPanel.setColor( robot.getPixelColor(pointer.getLocation().x, pointer.getLocation().y) );
 
                     if (mousePressed)
                     {
-                        setBrushColor(Client.paint.paintTools.toolOptionPanel.getColor());
-                        Client.paint.colorPicker.currentClrPanel.setBackground(Client.paint.paintTools.toolOptionPanel.getColor());
-                        tool.setColor(Client.paint.paintTools.toolOptionPanel.getColor());
+                        setBrushColor(ClientLoginGUI.paint.paintTools.toolOptionPanel.getColor());
+                        ClientLoginGUI.paint.colorPicker.currentClrPanel.setBackground(ClientLoginGUI.paint.paintTools.toolOptionPanel.getColor());
+                        tool.setColor(ClientLoginGUI.paint.paintTools.toolOptionPanel.getColor());
                         repaint();
                     }
                     robot = null;
@@ -376,49 +372,49 @@ public class DrawPanel extends JPanel implements Runnable, KeyListener
             case PENCIL:
             {
                 this.tool = new PencilTool(brushColor, this.tool.getStroke());
-                Client.paint.paintTools.setToolOptionPanel(new PencilToolPanel(Tool.PENCIL, this.tool.getStroke()));
+                ClientLoginGUI.paint.paintTools.setToolOptionPanel(new PencilToolPanel(Tool.PENCIL, this.tool.getStroke()));
                 break;
             }
             case BRUSH:
             {
                 this.tool = new BrushTool(brushColor, this.tool.getStroke(), StrokeStyle.LINE);
-                Client.paint.paintTools.setToolOptionPanel(new BrushToolPanel(Tool.BRUSH, this.tool.getStroke()));
+                ClientLoginGUI.paint.paintTools.setToolOptionPanel(new BrushToolPanel(Tool.BRUSH, this.tool.getStroke()));
                 break;
             }
             case ERASER:
             {
                 this.tool = new EraserTool(getBackground(), this.tool.getStroke(), StrokeStyle.SQUARE);
-                Client.paint.paintTools.setToolOptionPanel(new EraserToolPanel(Tool.ERASER,this.tool.getStroke()));
+                ClientLoginGUI.paint.paintTools.setToolOptionPanel(new EraserToolPanel(Tool.ERASER,this.tool.getStroke()));
                 break;
             }
             case RECTANGLE:
             {
                 this.tool = new RectangleTool(brushColor, this.tool.getStroke());
-                Client.paint.paintTools.setToolOptionPanel(new RectShapeToolPanel(Tool.RECTANGLE,this.tool.getStroke()));
+                ClientLoginGUI.paint.paintTools.setToolOptionPanel(new RectShapeToolPanel(Tool.RECTANGLE,this.tool.getStroke()));
                 break;
             }
             case ROUND_RECT:
             {
                 this.tool = new RoundRectTool(brushColor, this.tool.getStroke());
-                Client.paint.paintTools.setToolOptionPanel(new RectShapeToolPanel(Tool.ROUND_RECT,this.tool.getStroke()));
+                ClientLoginGUI.paint.paintTools.setToolOptionPanel(new RectShapeToolPanel(Tool.ROUND_RECT,this.tool.getStroke()));
                 break;
             }
             case OVAL:
             {
                 this.tool = new OvalTool(brushColor, this.tool.getStroke());
-                Client.paint.paintTools.setToolOptionPanel(new RectShapeToolPanel(Tool.OVAL,this.tool.getStroke()));
+                ClientLoginGUI.paint.paintTools.setToolOptionPanel(new RectShapeToolPanel(Tool.OVAL,this.tool.getStroke()));
                 break;
             }
             case LINE:
             {
                 this.tool = new LineTool(brushColor, this.tool.getStroke(), StrokeStyle.LINE);
-                Client.paint.paintTools.setToolOptionPanel(new DragShapeToolPanel(Tool.LINE,this.tool.getStroke()));
+                ClientLoginGUI.paint.paintTools.setToolOptionPanel(new DragShapeToolPanel(Tool.LINE,this.tool.getStroke()));
                 break;
             }
             case FILLER:
             {
                 this.tool = new FillerTool(brushColor, this.tool.getStroke());
-                Client.paint.paintTools.setToolOptionPanel(new PencilToolPanel(Tool.PENCIL,this.tool.getStroke()));
+                ClientLoginGUI.paint.paintTools.setToolOptionPanel(new PencilToolPanel(Tool.PENCIL,this.tool.getStroke()));
                 break;
             }
             case WRITER:

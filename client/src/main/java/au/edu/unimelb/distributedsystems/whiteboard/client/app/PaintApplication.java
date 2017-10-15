@@ -1,12 +1,14 @@
-/*
- * Paint ;D
- */
+
 package au.edu.unimelb.distributedsystems.whiteboard.client.app;
 
 import au.edu.unimelb.distributedsystems.whiteboard.client.controls.PaintToolPanel;
 import au.edu.unimelb.distributedsystems.whiteboard.client.controls.PencilToolPanel;
 import au.edu.unimelb.distributedsystems.whiteboard.client.tools.Tool;
 import au.edu.unimelb.distributedsystems.whiteboard.client.tools.draw.PaintElement;
+import au.edu.unimelb.distributedsystems.whiteboard.client.app.ClientLoginGUI;
+import au.edu.unimelb.distributedsystems.whiteboard.client.app.ColorPicker;
+import au.edu.unimelb.distributedsystems.whiteboard.client.app.DrawPanel;
+import au.edu.unimelb.distributedsystems.whiteboard.client.app.PaintMenuBar;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -23,42 +25,77 @@ public class PaintApplication extends JFrame
     protected PaintMenuBar menuBar; 
     protected ColorPicker colorPicker;
     public PaintToolPanel paintTools;
+    private boolean joint;
 
     public PaintApplication()
     {
         setSize(1000, 800);
-        setTitle("Whiteboard Client");
+        setTitle("Whiteboard");
         
         drawPanel   = new DrawPanel();
         menuBar     = new PaintMenuBar();
         colorPicker = new ColorPicker();
         paintTools  = new PaintToolPanel(new PencilToolPanel(Tool.PENCIL, 1));
-                
-        setJMenuBar(menuBar);
         
-        GroupLayout layout = new GroupLayout(getContentPane());
+        setJMenuBar(menuBar);
+        GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            //.addComponent(menuBar)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(paintTools, GroupLayout.DEFAULT_SIZE, 200, GroupLayout.DEFAULT_SIZE)
-                    .addComponent(colorPicker, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(paintTools, javax.swing.GroupLayout.DEFAULT_SIZE, 200, javax.swing.GroupLayout.DEFAULT_SIZE)
+                    .addComponent(colorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(drawPanel)
-       
-            
         ));
         layout.setVerticalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                		.addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                		.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 				.addComponent(drawPanel)
                 				.addGroup(layout.createSequentialGroup()
-                .addComponent(paintTools, GroupLayout.DEFAULT_SIZE, 640, GroupLayout.DEFAULT_SIZE)
-                				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE))
-                .addComponent(colorPicker, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)))
-                
+                .addComponent(paintTools, javax.swing.GroupLayout.DEFAULT_SIZE, 640, javax.swing.GroupLayout.DEFAULT_SIZE) 
+                				.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE))
+                .addComponent(colorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+
+        synchronizeStartingColor();
+    }
+    
+    public PaintApplication(boolean joint)
+    {
+    	this.joint = false;
+        setSize(1000, 800);
+        setTitle("Whiteboard");
+        
+        drawPanel   = new DrawPanel();
+        menuBar     = new PaintMenuBar(false);
+        colorPicker = new ColorPicker();
+        paintTools  = new PaintToolPanel(new PencilToolPanel(Tool.PENCIL, 1));
+        
+        setJMenuBar(menuBar);
+        GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(paintTools, javax.swing.GroupLayout.DEFAULT_SIZE, 200, javax.swing.GroupLayout.DEFAULT_SIZE)
+                    .addComponent(colorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(drawPanel)
+        ));
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                		.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                				.addComponent(drawPanel)
+                				.addGroup(layout.createSequentialGroup()
+                .addComponent(paintTools, javax.swing.GroupLayout.DEFAULT_SIZE, 640, javax.swing.GroupLayout.DEFAULT_SIZE) 
+                				.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE))
+                .addComponent(colorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -160,13 +197,13 @@ public class PaintApplication extends JFrame
     }
 
     public void saveFile()
-    {        
+    {
         try
         {
-        		Component component = drawPanel;
+        	Component component = drawPanel;
             JFileChooser chooseDirec = new JFileChooser();
             chooseDirec.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            chooseDirec.showSaveDialog(Client.paint);
+            chooseDirec.showSaveDialog(ClientLoginGUI.paint);
             File file = chooseDirec.getSelectedFile();
             file = new File(file+".mypaint");
             Rectangle rect = component.getBounds();
@@ -194,7 +231,7 @@ public class PaintApplication extends JFrame
             System.err.println("Error saving to new file.");
         }
     }
-
+    
     public void saveAsFile()
     {
         try
@@ -202,7 +239,7 @@ public class PaintApplication extends JFrame
         		Component component = drawPanel;
             JFileChooser chooseDirec = new JFileChooser();
             chooseDirec.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            chooseDirec.showSaveDialog(Client.paint);
+            chooseDirec.showSaveDialog(ClientLoginGUI.paint);
             File file = chooseDirec.getSelectedFile();
             file = new File(file+".png");
             Rectangle rect = component.getBounds();
@@ -230,7 +267,7 @@ public class PaintApplication extends JFrame
             System.err.println("Error saving to new file.");
         }   
     }
-    
+
     public void closeFile()
     {
         try

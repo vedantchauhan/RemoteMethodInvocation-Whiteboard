@@ -1,11 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package au.edu.unimelb.distributedsystems.whiteboard.client.app;
 
 import au.edu.unimelb.distributedsystems.whiteboard.client.tools.Tool;
 import au.edu.unimelb.distributedsystems.whiteboard.client.utils.ColorPanel;
+import au.edu.unimelb.distributedsystems.whiteboard.client.app.ClientLoginGUI;
+import au.edu.unimelb.distributedsystems.whiteboard.client.app.ColorOptionBox;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,15 +28,7 @@ public class ColorPicker extends JPanel
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(92, 92));
         setLayout(new BorderLayout());
-        /*
-        Color[] colors = {
-              Color.white,     Color.yellow, Color.red,
-              Color.pink,      Color.orange, Color.magenta,
-              Color.lightGray, Color.green,  Color.gray,
-              Color.darkGray,  Color.cyan,   Color.blue,
-              Color.black,
-         *
-         */
+
         colors = new Color[32];
         int count=0;
         for(int i=1; i<5; i++){
@@ -61,14 +52,14 @@ public class ColorPicker extends JPanel
                 @Override
                 public void mousePressed(MouseEvent event)
                 {
-                    if (Client.paint.drawPanel.getTool() != Tool.ERASER)
+                    if (ClientLoginGUI.paint.drawPanel.getTool() != Tool.ERASER)
                     {
                         currentClrPanel.setBackground(
-                                    JColorChooser.showDialog( Client.paint, "Change Color",
-                                                         Client.paint.drawPanel.brushColor));
+                                    JColorChooser.showDialog( ClientLoginGUI.paint, "Change Color",
+                                    		ClientLoginGUI.paint.drawPanel.brushColor));
                         color = currentClrPanel.getBackground();
-                        Client.paint.drawPanel.tool.setColor(currentClrPanel.getBackground());
-                        Client.paint.drawPanel.setBrushColor(color);
+                        ClientLoginGUI.paint.drawPanel.tool.setColor(currentClrPanel.getBackground());
+                        ClientLoginGUI.paint.drawPanel.setBrushColor(color);
                         
                     }
                 }
@@ -79,19 +70,10 @@ public class ColorPicker extends JPanel
         colorGrid.setBackground(Color.gray);
         colorGrid.setLayout(new GridLayout(2, 16, 6, 6));
 
-//        colorOptions = new ColorOptionBox[colors.length];
-//
-//        for(int i=0; i<colorOptions.length; i++)
-//        {
-//            colorOptions[i] = new ColorOptionBox(colors[i]);
-//            colorGrid.add(colorOptions[i]);
-//        }
-
         ColorPanel holder = new ColorPanel(Color.gray);
         holder.setLayout(new BorderLayout(6, 6));
 
         holder.add(currentClrPanel, BorderLayout.WEST);
-//        holder.add(colorGrid, BorderLayout.CENTER);
 
         JPanel holder2 = new JPanel();
         holder2.setLayout(new BorderLayout());

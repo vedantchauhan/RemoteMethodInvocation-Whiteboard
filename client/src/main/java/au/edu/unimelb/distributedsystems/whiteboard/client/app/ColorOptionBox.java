@@ -1,10 +1,12 @@
 
 package au.edu.unimelb.distributedsystems.whiteboard.client.app;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JPanel;
+import java.awt.Dimension;
 
 public class ColorOptionBox extends JPanel
 {
@@ -47,11 +49,11 @@ public class ColorOptionBox extends JPanel
         @Override
         public void mousePressed(MouseEvent event) 
         {
-            Client.paint.colorPicker.deselectAll();
+        	ClientLoginGUI.paint.colorPicker.deselectAll();
             selected = true;
-            Client.paint.drawPanel.setBrushColor(color);
-            Client.paint.colorPicker.currentClrPanel.setBackground(color);
-            Client.paint.repaint();
+            ClientLoginGUI.paint.drawPanel.setBrushColor(color);
+            ClientLoginGUI.paint.colorPicker.currentClrPanel.setBackground(color);
+            ClientLoginGUI.paint.repaint();
         }
 
         @Override
