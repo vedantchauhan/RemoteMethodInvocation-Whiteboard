@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package au.edu.unimelb.distributedsystems.whiteboard.client.tools.shape;
 
@@ -25,8 +21,8 @@ public class RoundRectElement extends RectangleElement
                           BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER));
 
         int[] arcs = new int[2];
-        arcs[0] = 32;  //Math.abs(fPoint.x-sPoint.x)/4;
-        arcs[1] = 32;  //Math.abs(fPoint.x-sPoint.x)/4;
+        arcs[0] = 32;
+        arcs[1] = 32;
 
         if (strokeStyle == StrokeStyle.OPEN_ROUND_RECT)
         {
