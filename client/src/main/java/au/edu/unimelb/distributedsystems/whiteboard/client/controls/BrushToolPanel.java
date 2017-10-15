@@ -1,10 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package au.edu.unimelb.distributedsystems.whiteboard.client.controls;
 
-import au.edu.unimelb.distributedsystems.whiteboard.client.app.Client;
+import au.edu.unimelb.distributedsystems.whiteboard.client.app.ClientLoginGUI;
 import au.edu.unimelb.distributedsystems.whiteboard.client.tools.StrokeStyle;
 import au.edu.unimelb.distributedsystems.whiteboard.client.tools.Tool;
 import au.edu.unimelb.distributedsystems.whiteboard.client.visuals.ToolOptionIcon;
@@ -64,8 +61,8 @@ public class BrushToolPanel extends PencilToolPanel
             {   
                 if (event.getSource() == strokeStyles[i])
                 {
-                    Client.paint.drawPanel.tool.setStrokeStyle(strokeStyleList[i]);
-                    showStroke.setStyle ( Client.paint.drawPanel.tool.getStrokeStyle() );
+                    ClientLoginGUI.paint.drawPanel.tool.setStrokeStyle(strokeStyleList[i]);
+                    showStroke.setStyle ( ClientLoginGUI.paint.drawPanel.tool.getStrokeStyle() );
                     repaint();
                     System.out.println("Style clicked: "+strokeStyleList[i]);
                 }

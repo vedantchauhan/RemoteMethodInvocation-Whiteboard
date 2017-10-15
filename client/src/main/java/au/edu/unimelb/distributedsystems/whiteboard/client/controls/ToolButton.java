@@ -1,8 +1,6 @@
-
-
 package au.edu.unimelb.distributedsystems.whiteboard.client.controls;
 
-import au.edu.unimelb.distributedsystems.whiteboard.client.app.Client;
+import au.edu.unimelb.distributedsystems.whiteboard.client.app.ClientLoginGUI;
 import au.edu.unimelb.distributedsystems.whiteboard.client.tools.Tool;
 
 import javax.swing.*;
@@ -44,8 +42,8 @@ public class ToolButton extends JButton implements ActionListener
     @Override
     public void actionPerformed(ActionEvent event)
     {
-        Client.paint.drawPanel.setTool(tool);
+        ClientLoginGUI.paint.drawPanel.setTool(tool);
         System.out.println("Your Tool has been changed to "+this.tool);
-        Client.paint.repaint();
+        ClientLoginGUI.paint.repaint();
     }
 }

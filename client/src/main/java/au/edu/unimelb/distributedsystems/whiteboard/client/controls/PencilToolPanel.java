@@ -1,10 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package au.edu.unimelb.distributedsystems.whiteboard.client.controls;
 
-import au.edu.unimelb.distributedsystems.whiteboard.client.app.Client;
+import au.edu.unimelb.distributedsystems.whiteboard.client.app.ClientLoginGUI;
 import au.edu.unimelb.distributedsystems.whiteboard.client.tools.StrokeStyle;
 import au.edu.unimelb.distributedsystems.whiteboard.client.tools.Tool;
 import au.edu.unimelb.distributedsystems.whiteboard.client.visuals.StrokePanel;
@@ -64,66 +61,8 @@ public class PencilToolPanel extends ToolOptionPanel
         @Override
         public void stateChanged(ChangeEvent event)
         {
-            Client.paint.drawPanel.tool.setStrokeWidth(strokeSlider.getValue());
+            ClientLoginGUI.paint.drawPanel.tool.setStrokeWidth(strokeSlider.getValue());
             repaint();
-            //System.out.println("Tool: "+Client.paint.drawPanel.tool+"  - - Stroke: "+ Client.paint.drawPanel.tool.getStroke());
         }
     }
 }
-
-
-/* To add in ribbon and Triangle
-/*
-    protected JButton[] strokeStyles;
-
-    private ToolOptionIcon[] styleIcons;
-
-    public BrushToolPanel(Tool tool)
-    {
-        super(tool);
-
-        setLayout(new FlowLayout());
-
-        strokeStyles = new JButton[3];
-
-        styleIcons = new ToolOptionIcon[3];
-
-        styleIcons[0] = new ToolOptionIcon(StrokeStyle.DOT_CIRC);
-        styleIcons[1] = new ToolOptionIcon(StrokeStyle.DOT_RECT);
-        styleIcons[2] = new ToolOptionIcon(StrokeStyle.LINE);
-
-        ButtonHandler handler = new ButtonHandler();
-
-        JPanel buttonHolder = new JPanel();
-        buttonHolder.setBackground(Color.gray);
-        buttonHolder.setPreferredSize(new Dimension(100, 100));
-        buttonHolder.setLayout(new GridLayout(3, 1));
-
-        for(int i=0; i<strokeStyles.length; i++)
-        {
-            strokeStyles[i] = new JButton();
-            strokeStyles[i].addActionListener(handler);
-            strokeStyles[i].add(styleIcons[i]);
-            buttonHolder.add(strokeStyles[i]);
-        }
-
-        add(buttonHolder);
-    }
-
-
-    private class ButtonHandler implements ActionListener
-    {
-        @Override
-        public void actionPerformed(ActionEvent event)
-        {
-            for(int i=0; i<strokeStyles.length; i++)
-            {
-                if (event.getSource() == strokeStyles[i])
-                {
-                    Main.paint.drawPanel.tool.setStrokeStyle(strokeStyleList[i]);
-                    System.out.println("Style clicked: "+strokeStyleList[i]);
-                }
-            }
-        }
-    }
-    */
