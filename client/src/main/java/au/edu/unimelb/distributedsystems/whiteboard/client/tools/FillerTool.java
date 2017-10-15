@@ -1,7 +1,7 @@
 
 package au.edu.unimelb.distributedsystems.whiteboard.client.tools;
 
-import au.edu.unimelb.distributedsystems.whiteboard.client.app.Client;
+import au.edu.unimelb.distributedsystems.whiteboard.client.app.ClientLoginGUI;
 import au.edu.unimelb.distributedsystems.whiteboard.client.tools.draw.BrushElement;
 
 import java.awt.*;
@@ -30,33 +30,33 @@ public class FillerTool extends AbstractTool
 
             robot = null;
 
-            if (neswClrs[0] != Client.paint.drawPanel.getBackground())
+            if (neswClrs[0] != ClientLoginGUI.paint.drawPanel.getBackground())
             {
                 robot.mouseMove(point.x-1, point.y);
-                Client.paint.drawPanel.elements.add(new BrushElement(Client.paint.drawPanel.getMousePosition(), color, 1, StrokeStyle.DOT_RECT));
-                System.out.println(Client.paint.drawPanel.getMousePosition());
-                Client.paint.drawPanel.repaint();
+                ClientLoginGUI.paint.drawPanel.elements.add(new BrushElement(ClientLoginGUI.paint.drawPanel.getMousePosition(), color, 1, StrokeStyle.DOT_RECT));
+                System.out.println(ClientLoginGUI.paint.drawPanel.getMousePosition());
+                ClientLoginGUI.paint.drawPanel.repaint();
                 fillAllSides(new Point(point.x-1, point.y), color);
             }
-            if (neswClrs[1] == Client.paint.drawPanel.getBackground())
+            if (neswClrs[1] == ClientLoginGUI.paint.drawPanel.getBackground())
             {
                 robot.mouseMove(point.x-1, point.y);
-                Client.paint.drawPanel.elements.add(new BrushElement(Client.paint.drawPanel.getMousePosition(), color, 1, StrokeStyle.DOT_RECT));
-                Client.paint.drawPanel.repaint();
+                ClientLoginGUI.paint.drawPanel.elements.add(new BrushElement(ClientLoginGUI.paint.drawPanel.getMousePosition(), color, 1, StrokeStyle.DOT_RECT));
+                ClientLoginGUI.paint.drawPanel.repaint();
                 fillAllSides(new Point(point.x+1, point.y), color);
             }
-            if (neswClrs[2] == Client.paint.drawPanel.getBackground())
+            if (neswClrs[2] == ClientLoginGUI.paint.drawPanel.getBackground())
             {
                 robot.mouseMove(point.x-1, point.y);
-                Client.paint.drawPanel.elements.add(new BrushElement(Client.paint.drawPanel.getMousePosition(), color, 1, StrokeStyle.DOT_RECT));
-                Client.paint.drawPanel.repaint();
+                ClientLoginGUI.paint.drawPanel.elements.add(new BrushElement(ClientLoginGUI.paint.drawPanel.getMousePosition(), color, 1, StrokeStyle.DOT_RECT));
+                ClientLoginGUI.paint.drawPanel.repaint();
                 fillAllSides(new Point(point.x, point.y+1), color);
             }
-            if (neswClrs[3] == Client.paint.drawPanel.getBackground())
+            if (neswClrs[3] == ClientLoginGUI.paint.drawPanel.getBackground())
             {
                 robot.mouseMove(point.x-1, point.y);
-                Client.paint.drawPanel.elements.add(new BrushElement(Client.paint.drawPanel.getMousePosition(), color, 1, StrokeStyle.DOT_RECT));
-                Client.paint.drawPanel.repaint();
+                ClientLoginGUI.paint.drawPanel.elements.add(new BrushElement(ClientLoginGUI.paint.drawPanel.getMousePosition(), color, 1, StrokeStyle.DOT_RECT));
+                ClientLoginGUI.paint.drawPanel.repaint();
                 fillAllSides(new Point(point.x, point.y-1), color);
             }
         }

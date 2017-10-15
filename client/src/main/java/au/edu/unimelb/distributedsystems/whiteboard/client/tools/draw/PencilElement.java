@@ -45,11 +45,3 @@ public class PencilElement extends PaintElement
         g2d.setStroke(new BasicStroke(1));
     }
 }
-
-/*
- *         g.setColor(getColor());
-        for(int i= -1*strokeWidth/2; i < strokeWidth/2; i++)
-        {
-            g.drawLine(coors.x, coors.y, previousPt.x+i, previousPt.y-i);
-        }
- */
